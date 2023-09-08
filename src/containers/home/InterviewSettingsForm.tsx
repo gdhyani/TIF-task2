@@ -3,6 +3,7 @@ import React from "react";
 import FormSelect from "../../components/formComponents/FormSelect";
 import { useFormik } from "formik";
 import { PageNumbers } from "../../interface/home";
+import * as Yup from "yup";
 import { IInterViewSettings } from "../../interface/forms";
 import {
   interviewDurationOptions,
@@ -26,6 +27,11 @@ const InterviewDetailsForm: React.FC<{
       interviewDuration: "",
       interviewLanguage: "",
     },
+    validationSchema: Yup.object().shape({
+      interviewMode: Yup.string().required("Interview Mode is required"),
+      interviewDuration: Yup.string().required("Interview Duration is required"),
+      interviewLanguage: Yup.string().required("Interview Language is required"),
+    }),
     onSubmit: (values) => {
       console.log({ values });
       alert("Form successfully submitted");

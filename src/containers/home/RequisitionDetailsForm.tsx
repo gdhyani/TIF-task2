@@ -7,10 +7,12 @@ import * as Yup from "yup";
 import { PageNumbers } from "../../interface/home";
 import { IRequisitionDetails } from "../../interface/forms";
 import { genderOptions, urgencyOptions } from "./constants";
+import {useState} from "react"
 
 const RequisitionDetailsForm: React.FC<{
   handleTab: (n: PageNumbers) => void;
 }> = ({ handleTab }) => {
+  const [title, setTitle] = useState("");
   const {
     handleChange,
     errors,
@@ -41,8 +43,8 @@ const RequisitionDetailsForm: React.FC<{
     onSubmit: (values) => {
       handleTab(1);
     },
-  });
 
+  });
   return (
     <Box width="100%" as="form" onSubmit={handleSubmit as any}>
       <Box width="100%">
@@ -56,6 +58,7 @@ const RequisitionDetailsForm: React.FC<{
           error={errors?.requisitionTitle}
           touched={touched?.requisitionTitle}
         />
+        {/* <h1>{useFormik.requisitionTitle}</h1> */}
         <FormInput
           label="Number of openings"
           placeholder="Enter number of openings"
